@@ -167,7 +167,18 @@ p{ margin: 0 0 12px; }
 .pied-coord a{ color: var(--volt); text-decoration: none; font-weight: 700; }
 
 /* ---------- Responsive ---------- */
+/* ---------- Bande photo pleine largeur ----------
+   Une respiration entre deux sections de texte. La hauteur est fixée en vh
+   plafonnée en px : sans le plafond, la bande dévore l'écran d'un portable
+   posé à l'horizontale. `object-fit: cover` garde le cadrage quel que soit
+   le format de l'écran. */
+.bande-photo{ position: relative; height: clamp(220px, 42vh, 420px); overflow: hidden; }
+.bande-photo img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+.bande-photo::after{ content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(11,16,28,.34), rgba(11,16,28,.06) 42%, rgba(11,16,28,.30)); }
+
 @media (max-width: 860px){
+  .bande-photo{ height: clamp(180px, 34vh, 260px); }
   .nav-desktop{ display: none; }
   .btn-menu{ display: flex; }
   .btn-tel span{ display: none; }
